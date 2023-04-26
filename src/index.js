@@ -3,6 +3,13 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Layout from "./pages/Layout";
+import Home from "./pages/Home";
+import NoPage from "./pages/NoPage";
+import Blogs from './pages/Blogs';
+import Contact from './pages/Contact';
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
