@@ -31,13 +31,15 @@ const ImageToggle = ({frontImg, backImg}) => {
 function Home() {
     return (
 
-        <div class="bg-slate-500 flex flex-col h-screen">
+        <div class="bg-starrynight flex flex-col h-screen">
                           
-            <div class="h-1/4 flex rounded-full justify-center p-8">
+            <div class="h-1/3 flex rounded-full justify-center p-8">
                 
                 <ImageToggle backImg={backImg} frontImg={frontImg} alt=""/>
             </div>
-            <div class="h-full flex rounded-full justify-center" >this is the homepage</div>
+            <div class="flex rounded-full justify-center">
+                <p class="text-3xl text-amber-100">Welcome to my website!</p>
+            </div>
                                       
         </div>
     )
