@@ -4,10 +4,10 @@ import Navbar from '../Navbar';
 
 const Layout = () => {
     return (
-        <>
+        <div class="font-sans">
         <Navbar />
         <Outlet />
-        </>
+        </div>
     )
 }
 

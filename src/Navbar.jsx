@@ -1,21 +1,26 @@
 import React from 'react';
 import { BrowserRouter, Route, Link } from 'react-router-dom';
+import "./App.css"
 
 function Navbar() {
     return (
-        <nav>
-            <ul>
-                <li>
-                    <Link to="/">Home</Link>
-                </li>
-                <li>
-                    <Link to="/blogs">Blogs</Link>
-                </li>
-                <li>
-                    <Link to="/contact">Contact</Link>
-                </li>
-            </ul>
-        </nav>
+        <div class="bg-sky-900 flex flex-row justify-center p-4 text-amber-100">
+            <Link class=""to="/">
+                <div class="flex-shrink-0 px-6 hover:bg-cyan-600 rounded-lg p-2">
+                    Home
+                </div>
+            </Link>
+            <Link to="/blogs">
+                <div class="flex-shrink-0 px-6 hover:bg-cyan-600 rounded-lg p-2">
+                    Blogs
+                </div>
+            </Link>
+            <Link to="/contact">
+                <div class="flex-shrink-0 px-6 hover:bg-cyan-600 rounded-lg p-2">
+                    Contact
+                </div>
+            </Link>
+        </div>
     )
 
 }
