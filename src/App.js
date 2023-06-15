@@ -5,10 +5,12 @@ import Home from "./pages/Home";
 import Blogs from "./pages/Blogs";
 import Contact from "./pages/Contact";
 import NoPage from "./pages/NoPage";
+import Submit from "./pages/Submit";
 import "./App.css";
 
 export default function App() {
   return (
+    
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Layout/>}>
@@ -17,9 +19,10 @@ export default function App() {
           <Route path="blogs" element={<Blogs/>} />
           <Route path="contact" element={<Contact/>} />
           <Route path="*" element={<NoPage/>} />
-          
+          <Route path="blogs/submit" element={<Submit/>}/>
         </Route>
       </Routes>
     </BrowserRouter>
+    
   );
 }

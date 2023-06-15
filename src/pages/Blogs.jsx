@@ -1,64 +1,45 @@
 import React from "react";
+import {Link} from "react-router-dom";
 import {useState} from "react";
 
-function Blogs() {
-    const initialText = "";
-    const [pText, setPText] = useState(initialText)
-    const [bText, setBText] = useState(initialText)
-    async function testClick() {
-        setPText("test successful")
-       
-        let response = await fetch('http://127.0.0.1:5001/nicholas-nguyen/us-central1/helloworld').then(response => response.text())
-        //let data = response.text()
-        setPText(response)
-        console.log(response)
-    }
-
+function PostList() {
+    const [list, setList] = useState([])
     async function blogClick() {
-        setBText("test successful")
-       
-        let response = await fetch('http://127.0.0.1:5001/nicholas-nguyen/us-central1/getposts').then(response => response.text())
-        //let data = response.text()
-        setBText(response)
-        console.log(response)
-    }
-
-    async function blogPost() {
-        const requestOptions = {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'},
-            body: JSON.stringify({author: 'me', body: 'super duper hunky bod', data:"this is data"})
-            };
-
-            let response = fetch('http://127.0.0.1:5001/nicholas-nguyen/us-central1/addblog', requestOptions).then(response =>response.json())
-            console.log(response)
-    }
-
-    
+        
+        var posts = []
+        let response = await fetch('http://127.0.0.1:5001/nicholas-nguyen/us-central1/getposts').then(response => response.json())
+   
+        Object.values(response).forEach( x => posts.push(x))
+        console.log(posts)
+        setList(posts)
+    }   
 
     return (
-        <div>
-            <h1>this is my blog</h1>
-            <button onClick={testClick}>test button</button>
-            <br></br>
-            <button onClick={blogClick}>blog button</button>
-            <br></br>
-            <button onClick={blogPost}>blog post test</button>
-            <div>
-                <label>
-                    Your Name:< input name="name"class="bg-red-500"></input>
-                </label>
-                <label>
-                    Blog Text:
-                    <textarea class="bg-red-500">
+        <div class="flex flex-col">
+            
+            {list.map((item) => (<div class="flex justify-center bg-slate-200">date: {item.date} title: {item.title} author: {item.author} body: {item.body}</div>))}
+            
+            <button onClick={blogClick}>retrieve blog button</button>
+        </div>
+        
+    )
+        
+}
 
-                    </textarea>
-                    
-                </label>
+ 
+
+function Blogs() {
+
+    return (
+        <div class="flex flex-col">
+            <h1>this is my blog</h1>
+            <div class="flex justify-center">
+                <Link to="submit">
+                    <input class="bg-slate-200 p-8 rounded-lg"placeholder="Create Post"></input>
+                </Link>   
             </div>
-            <p>{pText}</p>
-            <p>{bText}</p>
+            <PostList/>
+            
         </div>
     )
 }

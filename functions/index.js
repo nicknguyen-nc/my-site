@@ -13,35 +13,53 @@ const {logger} = require("firebase-functions");
 const {onRequest} = require("firebase-functions/v2/https");
 const {onDocumentCreated} = require("firebase-functions/v2/firestore");
 
+const admin = require('firebase-admin');
+const functions = require('firebase-functions');
 // The Firebase Admin SDK to access Firestore.
 const {initializeApp} = require("firebase-admin/app");
 const {getFirestore} = require("firebase-admin/firestore");
 
+
+
 initializeApp();
+//admin.initializeApp(functions.config().firebase);
 
 exports.helloworld = onRequest(async (req,res) => {
   res.send("hello from firebase")
 })
 
 exports.getposts = onRequest(async (req, res) => {
-  res.send("blogs")
+  posts = []
+  const postRequest = await getFirestore().collection('blogs').get().then((querySnapshot) => (
+    querySnapshot.forEach((doc) => {
+        posts.push(doc.data());
+    })));
+
+  logger.log(posts)
+  res.send(JSON.stringify(posts))
+
 })
 
 exports.addblog = onRequest(async (req, res) => {
-  const original = JSON.parse(JSON.stringify(req.query))
+  const original = JSON.parse(JSON.stringify(req.body))
+  logger.log(original)
   const writeResult = await getFirestore()
       .collection("blogs")
       .add(
         {
+          title: original.title,
           author: original.author,
           body: original.body,
-          data: original.data
+          date: original.date
         }
       )
   res.json({result:`Blog post with ID: ${writeResult.id} added.`})
 })
 
 
+
+
+/*
 // Take the text parameter passed to this HTTP endpoint and insert it into
 // Firestore under the path /messages/:documentId/original
 exports.addmessage = onRequest(async (req, res) => {
@@ -74,3 +92,4 @@ exports.makeuppercase = onDocumentCreated("/messages/{documentId}", (event) => {
   return event.data.ref.set({uppercase}, {merge: true});
 });
 
+*/
