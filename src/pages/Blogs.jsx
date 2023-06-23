@@ -15,9 +15,14 @@ function PostList() {
     }   
 
     return (
-        <div class="flex flex-col">
+        <div class="flex flex-col m-6 px-40">
             
-            {list.map((item) => (<div class="flex justify-center bg-slate-200">date: {item.date} title: {item.title} author: {item.author} body: {item.body}</div>))}
+            {list.map((item) => (<div class="flex-col justify-center bg-slate-200 m-2 rounded-lg px-10 py-3">
+                <div class="flex justify-center py-1">{item.date} Posted by: {item.author}</div>
+                <div class="flex py-1 font-medium text-lg">{item.title}</div>
+                <div class="flex py-1">{item.body}</div>
+                
+            </div>))}
             
             <button onClick={blogClick}>retrieve blog button</button>
         </div>
@@ -26,7 +31,7 @@ function PostList() {
         
 }
 
- 
+  
 
 function Blogs() {
 
