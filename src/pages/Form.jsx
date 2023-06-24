@@ -3,7 +3,7 @@ import {useState} from "react";
 import {Link} from "react-router-dom";
 
 
-function Submit() {
+function Form() {
     const [formData, setFormData] = useState({title:"", author:"", body:""})
 
 
@@ -17,9 +17,12 @@ function Submit() {
             body: JSON.stringify({title:formData.title, author: formData.author, body:formData.body, date:date, data:""})
             };
 
-        let response = fetch('https://addblog-wbhepoc7lq-uc.a.run.app', requestOptions).then(response => console.log(response.json()))
+        //let response = fetch('https://addblog-wbhepoc7lq-uc.a.run.app', requestOptions).then(response => console.log(response.json()))
+        let response = fetch('http://localhost:3000/Blogs/form/submit', requestOptions).then(response => console.log(response.json()))
         console.log(response)
     }
+    
+
 
     const handleFieldChange = (event) => {
         const {name, value} = event.target;
@@ -58,4 +61,4 @@ function Submit() {
 
 }
 
-export default Submit;
+export default Form;

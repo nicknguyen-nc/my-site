@@ -5,7 +5,7 @@ import Home from "./pages/Home";
 import Blogs from "./pages/Blogs";
 import Contact from "./pages/Contact";
 import NoPage from "./pages/NoPage";
-import Submit from "./pages/Submit";
+import Form from "./pages/Form";
 import "./App.css";
 
 export default function App() {
@@ -19,7 +19,7 @@ export default function App() {
           <Route path="blogs" element={<Blogs/>} />
           <Route path="contact" element={<Contact/>} />
           <Route path="*" element={<NoPage/>} />
-          <Route path="blogs/submit" element={<Submit/>}/>
+          <Route path="blogs/form" element={<Form/>}/>
         </Route>
       </Routes>
     </BrowserRouter>

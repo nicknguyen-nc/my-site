@@ -7,8 +7,8 @@ function PostList() {
     async function blogClick() {
         
         var posts = []
-        //let response = await fetch('http://127.0.0.1:5001/nicholas-nguyen/us-central1/getposts').then(response => response.json())
-        let response = await fetch('https://getposts-wbhepoc7lq-uc.a.run.app').then(response => response.json())
+        let response = await fetch('http://localhost:3000/Blogs/retrieve').then(response => response.json())
+        //let response = await fetch('https://getposts-wbhepoc7lq-uc.a.run.app').then(response => response.json())
         Object.values(response).forEach( x => posts.push(x))
         console.log(posts)
         setList(posts)
@@ -39,7 +39,7 @@ function Blogs() {
         <div class="flex flex-col">
             <h1>this is my blog</h1>
             <div class="flex justify-center">
-                <Link to="submit">
+                <Link to="form">
                     <input class="bg-slate-200 p-8 rounded-lg"placeholder="Create Post"></input>
                 </Link>   
             </div>
