@@ -17,8 +17,8 @@ function Form() {
             body: JSON.stringify({title:formData.title, author: formData.author, body:formData.body, date:date, data:""})
             };
 
-        //let response = fetch('https://addblog-wbhepoc7lq-uc.a.run.app', requestOptions).then(response => console.log(response.json()))
-        let response = fetch('http://localhost:3000/Blogs/form/submit', requestOptions).then(response => console.log(response.json()))
+        let response = fetch('https://addblog-wbhepoc7lq-uc.a.run.app', requestOptions).then(response => console.log(response.json()))
+        //let response = fetch('http://localhost:3000/blogs/form/submit', requestOptions).then(response => console.log(response.json()))
         console.log(response)
     }
     
@@ -38,16 +38,16 @@ function Form() {
                 <h1>Create a Blog Post</h1>
             </div>        
             <div class="flex justify-center p-2">
-                <textarea class="overflow-y-auto rounded-sm" maxLength="100" cols="30" rows="2" placeholder="Title" name="title" 
+                <textarea class="overflow-y-auto rounded-md" maxLength="100" cols="30" rows="2" placeholder="Title" name="title" 
                 onChange={handleFieldChange} value={formData.title}></textarea>
             </div>
             <div class="flex justify-center p-4">
-                <textarea class="overflow-y-auto rounded-sm" maxLength="30" cols="30" rows="1" placeholder="Author" name="author"
+                <textarea class="overflow-y-auto rounded-md" maxLength="30" cols="30" rows="1" placeholder="Author" name="author"
                 onChange={handleFieldChange} value={formData.author}></textarea>
             </div>   
   
             <div class="flex justify-center p-2">
-                <textarea class="overflow-y-auto rounded-sm" maxLength="1000" cols="30" rows="5" placeholder="Body" name="body"
+                <textarea class="overflow-y-auto rounded-md" maxLength="1000" cols="30" rows="5" placeholder="Body" name="body"
                 onChange={handleFieldChange} value={formData.body}></textarea>
             </div>
             <Link to="../Blogs">

@@ -18,6 +18,7 @@ const {onRequest} = require("firebase-functions/v2/https");
 // The Firebase Admin SDK to access Firestore.
 const {initializeApp} = require("firebase-admin/app");
 const {getFirestore} = require("firebase-admin/firestore");
+const cors = require("cors")({origin: true});
 
 initializeApp();
 // admin.initializeApp(functions.config().firebase);
@@ -26,32 +27,36 @@ exports.helloworld = onRequest(async (req, res) => {
   res.send("hello from firebase");
 });
 */
-exports.getposts = onRequest(async (req, res) => {
-  const posts = [];
-  await getFirestore()
-      .collection("blogs").get().then((querySnapshot) => (
-        querySnapshot.forEach((doc) => {
-          posts.push(doc.data());
-        })));
 
-  logger.log(posts);
-  res.send(JSON.stringify(posts));
+exports.getposts = onRequest(async (req, res) => {
+  cors(req, res, async () => {
+    const posts = [];
+    await getFirestore()
+        .collection("blogs").get().then((querySnapshot) => (
+          querySnapshot.forEach((doc) => {
+            posts.push(doc.data());
+          })));
+    logger.log(posts);
+    res.send(JSON.stringify(posts));
+  });
 });
 
 exports.addblog = onRequest(async (req, res) => {
-  const original = JSON.parse(JSON.stringify(req.body));
-  logger.log(original);
-  const writeResult = await getFirestore()
-      .collection("blogs")
-      .add(
-          {
-            title: original.title,
-            author: original.author,
-            body: original.body,
-            date: original.date,
-          },
-      );
-  res.json({result: `Blog post with ID: ${writeResult.id} added.`});
+  cors(req, res, async () => {
+    const original = JSON.parse(JSON.stringify(req.body));
+    logger.log(original);
+    const writeResult = await getFirestore()
+        .collection("blogs")
+        .add(
+            {
+              title: original.title,
+              author: original.author,
+              body: original.body,
+              date: original.date,
+            },
+        );
+    res.json({result: `Blog post with ID: ${writeResult.id} added.`});
+  });
 });
 
 /*
