@@ -9,7 +9,7 @@ function Form() {
 
 
     async function blogPost() {
-        const date = new Date().toJSON().slice(0,10)
+        const date = new Date().toJSON()
         const requestOptions = {
             method: 'POST',
             headers: {
@@ -17,9 +17,9 @@ function Form() {
             body: JSON.stringify({title:formData.title, author: formData.author, body:formData.body, date:date, data:""})
             };
 
-        let response = fetch('https://addblog-wbhepoc7lq-uc.a.run.app', requestOptions).then(response => console.log(response.json()))
-        //let response = fetch('http://localhost:3000/blogs/form/submit', requestOptions).then(response => console.log(response.json()))
-        console.log(response)
+        //let response = fetch('https://addblog-wbhepoc7lq-uc.a.run.app', requestOptions).then(response => console.log(response.json()))
+        let response = fetch('http://127.0.0.1:5001/nicholas-nguyen/us-central1/addblog', requestOptions).then(response => console.log(response.json()))
+        //console.log(response)
     }
     
 
