@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Route, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import "./App.css"
 
 function Navbar() {
@@ -25,12 +25,11 @@ function Navbar() {
             </div>
 
             <div class="shrink ml-auto hover:bg-cyan-800">
-                placeholder
                 
             </div>
         </div>
     )
 
 }
-
+// last div is for a placeholder night mode toggler
 export default Navbar;

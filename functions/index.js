@@ -28,6 +28,7 @@ exports.helloworld = onRequest(async (req, res) => {
 });
 */
 
+// retrieve posts for the client side
 exports.getposts = onRequest(async (req, res) => {
   cors(req, res, async () => {
     const posts = [];
@@ -36,11 +37,17 @@ exports.getposts = onRequest(async (req, res) => {
           querySnapshot.forEach((doc) => {
             posts.push(doc.data());
           })));
+    posts.sort((a,b) =>
+      // Turn your strings into dates, and then subtract them
+      // to get a value that is either negative, positive, or zero.
+      new Date(a.date) - new Date(b.date)
+    ).reverse()
     logger.log(posts);
     res.send(JSON.stringify(posts));
   });
 });
 
+// Add blog to all posts
 exports.addblog = onRequest(async (req, res) => {
   cors(req, res, async () => {
     const original = JSON.parse(JSON.stringify(req.body));

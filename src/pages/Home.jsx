@@ -1,6 +1,6 @@
-import React, {Component, useRef} from 'react';
-import frontImg from "../images/Front.png";
-import backImg from "../images/Back.png";
+import React, {useRef} from 'react';
+import frontImg from "../images/flower.jpg";
+import backImg from "../images/beach.jpg";
 
 import '../App.css'
 
@@ -37,8 +37,14 @@ function Home() {
                 
                 <ImageToggle backImg={backImg} frontImg={frontImg} alt=""/>
             </div>
-            <div class="flex rounded-full justify-center">
-                <p class="text-3xl">Welcome to my website!</p>
+            <div class="flex-col rounded-full justify-center">
+                
+                <p class="text-3xl py-1 flex justify-center">Hello, my name is Nick Nguyen!</p>
+                <p class="text-3xl py-1 flex justify-center">I'm an early career software engineer with a wide range of interests.</p>
+                <p class="text-3xl py-1 flex justify-center">I graduated from UNC Chapel Hill in 2023 with a Bachelors of Science in Computer Science.</p>
+                <p class="text-3xl py-1 flex justify-center">Please explore my website with the navbar at the top of the page.</p>
+                                    
+                                    
             </div>
                                       
         </div>

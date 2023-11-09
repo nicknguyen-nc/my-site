@@ -7,8 +7,8 @@ function PostList() {
     async function blogClick() {
         
         var posts = []
-        let response = await fetch('http://127.0.0.1:5001/nicholas-nguyen/us-central1/getposts').then(response => response.json())
-        //let response = await fetch('https://getposts-wbhepoc7lq-uc.a.run.app').then(response => response.json())
+        //let response = await fetch('http://127.0.0.1:5001/nicholas-nguyen/us-central1/getposts').then(response => response.json())
+        let response = await fetch('https://getposts-wbhepoc7lq-uc.a.run.app').then(response => response.json())
         console.log(response)
         Object.values(response).forEach( 
             x => posts.push(x)
@@ -23,8 +23,9 @@ function PostList() {
         <div class="flex flex-col justify-center items-center">
             <div class="flex flex-col m-6 px-40">
                 {list.map((item) => (<div class="flex-col justify-center bg-slate-200 m-2 rounded-lg px-10 py-3">
-                    <div class="flex justify-cente r py-1">{Date(item.date)} Posted by: {item.author}</div>
-                    <div class="flex py-1 font-medium text-lg">{item.title}</div>
+                    <div class="flex justify-cente r py-1">{item.date} </div>
+                    <div class="flex justify-cente r py-1"> Posted by: {item.author}</div>
+                    <div class="flex py-1 text-xl">{item.title}</div>
                     <div class="flex py-1">{item.body}</div>
                     
                 </div>))}
