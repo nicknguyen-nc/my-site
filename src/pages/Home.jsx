@@ -31,18 +31,18 @@ const ImageToggle = ({frontImg, backImg}) => {
 function Home() {
     return (
 
-        <div class="flex flex-col ">
+        <div class="flex flex-col mt-4 mb-10">
                           
             <div class="flex rounded-full justify-center p-8">
                 
                 <ImageToggle backImg={backImg} frontImg={frontImg} alt=""/>
             </div>
-            <div class="flex-col rounded-full justify-center">
+            <div class="flex-col rounded-full justify-center bg-slate-200 m-2 rounded-lg px-10 py-3">
                 
                 <p class="text-3xl py-1 flex justify-center">Hello, my name is Nick Nguyen!</p>
                 <p class="text-3xl py-1 flex justify-center">I'm an early career software engineer with a wide range of interests.</p>
                 <p class="text-3xl py-1 flex justify-center">I graduated from UNC Chapel Hill in 2023 with a Bachelors of Science in Computer Science.</p>
-                <p class="text-3xl py-1 flex justify-center">Please explore my website with the navbar at the top of the page.</p>
+                <p class="text-3xl py-1 flex justify-center">Feel free to explore my website with the navbar at the top of the page.</p>
                                     
                                     
             </div>

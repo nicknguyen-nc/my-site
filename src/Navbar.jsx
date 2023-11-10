@@ -14,7 +14,7 @@ function Navbar() {
             </Link>
             <Link to="/blogs">
                 <div class="px-6 hover:bg-cyan-800 rounded-lg p-2">
-                    Blogs
+                    Message Board
                 </div>
             </Link>
             <Link to="/contact">
