@@ -7,7 +7,7 @@ import Contact from "./pages/Contact";
 import NoPage from "./pages/NoPage";
 import Form from "./pages/Form";
 import Footer from "./Footer";
-
+import GrammarSurvey from "./pages/GrammarSurvey";
 import "./App.css";
 
 export default function App() {
@@ -22,6 +22,7 @@ export default function App() {
           <Route path="contact" element={<Contact/>} />
           <Route path="*" element={<NoPage/>} />
           <Route path="blogs/form" element={<Form/>}/>
+          <Route path="grammar-survey" element={<GrammarSurvey/>}/>
         </Route>
       </Routes>
     </BrowserRouter>

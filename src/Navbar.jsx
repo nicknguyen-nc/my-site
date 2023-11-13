@@ -22,6 +22,11 @@ function Navbar() {
                     Contact
                 </div>
             </Link>
+            <Link to="/grammar-survey">
+                <div class="px-6 hover:bg-cyan-800 rounded-lg p-2">
+                    Grammar Survey
+                </div>
+            </Link>
             </div>
 
             <div class="shrink ml-auto hover:bg-cyan-800">

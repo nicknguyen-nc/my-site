@@ -32,18 +32,18 @@ exports.helloworld = onRequest(async (req, res) => {
 exports.getposts = onRequest(async (req, res) => {
   cors(req, res, async () => {
     const posts = [];
-    await getFirestore()
-        .collection("blogs").get().then((querySnapshot) => (
+    await getFirestore().collection("blogs")
+      .orderBy("date").get().then(
+        (querySnapshot) => (
           querySnapshot.forEach((doc) => {
-            posts.push(doc.data());
-          })));
-    posts.sort((a,b) =>
-      // Turn your strings into dates, and then subtract them
-      // to get a value that is either negative, positive, or zero.
-      new Date(a.date) - new Date(b.date)
-    ).reverse()
-    logger.log(posts);
-    res.send(JSON.stringify(posts));
+            posts.push(doc.data())
+          }
+          )
+        )
+      )
+
+    logger.log(posts)
+    res.send(JSON.stringify(posts.reverse()))
   });
 });
 
@@ -53,19 +53,53 @@ exports.addblog = onRequest(async (req, res) => {
     const original = JSON.parse(JSON.stringify(req.body));
     logger.log(original);
     const writeResult = await getFirestore()
-        .collection("blogs")
-        .add(
-            {
-              title: original.title,
-              author: original.author,
-              body: original.body,
-              date: original.date,
-            },
-        );
-    res.json({result: `Blog post with ID: ${writeResult.id} added.`});
+      .collection("blogs")
+      .add(
+        {
+          title: original.title,
+          author: original.author,
+          body: original.body,
+          date: original.date,
+        },
+      );
+    res.json({ result: `Blog post with ID: ${writeResult.id} added.` });
   });
 });
 
+
+exports.addresponse = onRequest(async (req, res) => {
+  cors(req, res, async () => {
+    const original = JSON.parse(JSON.stringify(req.body));
+    logger.log(original);
+    const writeResult = await getFirestore()
+      .collection("responses")
+      .add(
+        {
+          author: original.author,
+          body: original.body,
+          date: original.date,
+        },
+      );
+    res.json({ result: `Response post with ID: ${writeResult.id} added.` });
+  });
+});
+
+exports.getresponse = onRequest(async (req, res) => {
+  cors(req, res, async () => {
+    const posts = [];
+    const result = await getFirestore().collection("responses").orderBy("date").get().then(
+      (querySnapshot) => (
+        querySnapshot.forEach((doc) => {
+          posts.push(doc.data())
+        }
+        )
+      )
+    )
+
+    logger.log(posts)
+    res.send(JSON.stringify(posts.reverse()))
+  });
+});
 /*
 // Take the text parameter passed to this HTTP endpoint and insert it into
 // Firestore under the path /messages/:documentId/original
