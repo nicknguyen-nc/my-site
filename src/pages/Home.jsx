@@ -2,6 +2,8 @@ import React, {useRef} from 'react';
 import frontImg from "../images/flower.jpg";
 import backImg from "../images/beach.jpg";
 
+import Slideshow from "./Slideshow";
+
 import '../App.css'
 
 const ImageToggle = ({frontImg, backImg}) => {
@@ -10,7 +12,8 @@ const ImageToggle = ({frontImg, backImg}) => {
     return (
         <img
             onMouseOver={() => {
-                imageRef.current.src = frontImg;
+              //  imageRef.current.src = frontImg;
+              imageRef.current.src = backImg
             }}
             onMouseOut={() =>{
                 imageRef.current.src= backImg;
@@ -31,13 +34,13 @@ const ImageToggle = ({frontImg, backImg}) => {
 function Home() {
     return (
 
-        <div class="flex flex-col mt-4 mb-10">
-                          
+        <div class="flex flex-col mt-4 mb-10 items-center">
+
             <div class="flex rounded-full justify-center p-8">
                 
                 <ImageToggle backImg={backImg} frontImg={frontImg} alt=""/>
             </div>
-            <div class="flex-col rounded-full justify-center bg-slate-200 m-2 rounded-lg px-10 py-3">
+            <div class="flex-col rounded-full justify-center bg-slate-200 m-2 border-2 border-slate-500 rounded-lg px-10 py-3">
                 
                 <p class="text-3xl py-1 flex justify-center">Hello, my name is Nick Nguyen!</p>
                 <p class="text-3xl py-1 flex justify-center">I'm an early career software engineer with a wide range of interests.</p>

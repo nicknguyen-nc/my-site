@@ -25,7 +25,7 @@ function GrammarSurvey() {
         let response = fetch('https://addresponse-wbhepoc7lq-uc.a.run.app', requestOptions).then(response => console.log(response.json()))
         //let response = fetch('http://127.0.0.1:5001/nicholas-nguyen/us-central1/addblog', requestOptions).then(response => console.log(response.json()))
         //console.log(response)
-      
+        setFormData({author:"", body:""})
     }
     
     
@@ -50,7 +50,7 @@ function GrammarSurvey() {
 
     return (
         <div class="flex-col">
-            <div class="flex justify-center mt-8">What do you think this sentence means?</div>
+            <div class="flex justify-center mt-8">What does the following sentence mean?</div>
             <div class="flex flex-col">
                 <div class="flex justify-center p-2">
                     <h1>"He is one of the main character's dads."</h1>
@@ -69,14 +69,14 @@ function GrammarSurvey() {
             </div>
 
 
-            <div class="flex justify-center">
-                <list>
-                {responseData.map((item) => (<div className="flex-col justify-center bg-slate-200 m-2 rounded-lg px-10 py-3">
-                    <div className="flex justify-cente r py-1">Date: {item.date} </div>
-                    <div className="flex justify-cente r py-1"> Posted by: {item.author}</div>
+            <div class="flex flex-col justify-center m-6 px-40 items-center">
+                
+                {responseData.map((item) => (<div className="flex-col justify-center bg-slate-200 m-2 border-2 border-slate-500 rounded-lg px-10 py-3">
+                    <div className="flex justify-center py-1">Date: {item.date} </div>
+                    <div className="flex justify-center py-1">Posted by: {item.author}</div>
                     <div className="flex py-1">{item.body}</div>
                 </div>))}
-                </list>
+                
                 <button onClick={retrieveResponses} class="bg-sky-300 p-4 rounded-full px-8">Show Other Responses</button>
                 
             </div>
