@@ -1,18 +1,13 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
+import GeneralForm from './GeneralForm';
 
 
 function GrammarSurvey() {
     
-    const [formData, setFormData] = useState({author:"", body:""})
+    const formFields = {author:"", body:""};
     
-    const handleFieldChange = (e) => {
-        const {name, value} = e.target;
-        
-        setFormData((prevFormData) => ({...prevFormData, [name]: value}))
-    }
-
-    let GrammarPost = async () => {
+    let GrammarPost = async (formData, setFormData) => {
         
         const date = new Date().toJSON()
         const requestOptions = {
@@ -55,17 +50,7 @@ function GrammarSurvey() {
                 <div class="flex justify-center p-2">
                     <h1>"He is one of the main character's dads."</h1>
                 </div>        
-                <div class="flex justify-center p-4">
-                    <textarea class="overflow-y-auto rounded-md bg-slate-200" maxLength="30" cols="30" rows="1" placeholder="Name" name="author"
-                    onChange={handleFieldChange} value={formData.author}></textarea>
-                </div>   
-                <div class="flex justify-center p-2">
-                    <textarea class="overflow-y-auto rounded-md bg-slate-200" maxLength="1000" cols="30" rows="5" placeholder="Answer" name="body"
-                    onChange={handleFieldChange} value={formData.body}></textarea>
-                </div>
-                <div class="flex justify-center p-2">
-                    <button onClick={GrammarPost} class="bg-sky-300 p-4 rounded-full px-8">Submit</button>
-                </div>
+                <GeneralForm handleSubmit={GrammarPost} formFields={formFields}></GeneralForm>
             </div>
 
 
