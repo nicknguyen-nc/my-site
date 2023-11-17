@@ -1,10 +1,12 @@
 import React from "react";
 import GeneralForm from "./GeneralForm";
+import { useNavigate } from "react-router-dom";
 
 
 function Form() {
 
     const formFields = {title:"", author:"", body:""};
+    const navigate = useNavigate();
 
 
     async function blogPost(formData) {
@@ -17,6 +19,7 @@ function Form() {
             };
 
         let response = fetch('https://addblog-wbhepoc7lq-uc.a.run.app', requestOptions).then(response => console.log(response.json()))
+        navigate("/blogs")
         //let response = fetch('http://127.0.0.1:5001/nicholas-nguyen/us-central1/addblog', requestOptions).then(response => console.log(response.json()))
         //console.log(response)
     }

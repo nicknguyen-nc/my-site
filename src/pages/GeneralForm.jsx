@@ -27,11 +27,9 @@ function GeneralForm({formFields, isMessageBoard = false, handleSubmit}) {
                     <textarea class="overflow-y-auto rounded-md bg-slate-200" maxLength="1000" cols="30" rows="5" placeholder="Body" name="body"
                     onChange={handleFieldChange} value={formData.body}></textarea>
                 </div>
-                <Link to="../Blogs">
                 <div class="flex justify-center p-2">
                     <button onClick={()=>{handleSubmit(formData, setFormData)}} class="bg-sky-300 p-4 rounded-full px-8">Create</button>
                 </div>
-                </Link>
         </>  
     )
 
