@@ -38,7 +38,8 @@ function Home() {
 
             <div class="flex rounded-full justify-center p-8">
                 
-                <ImageToggle backImg={backImg} frontImg={frontImg} alt=""/>
+                {/*<ImageToggle backImg={backImg} frontImg={frontImg} alt=""/>*/}
+                <Slideshow/>
             </div>
             <div class="flex-col rounded-full justify-center bg-slate-200 m-2 border-2 border-slate-500 rounded-lg px-10 py-3">
                 

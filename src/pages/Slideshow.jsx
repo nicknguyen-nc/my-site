@@ -1,18 +1,27 @@
 import React from 'react';
 import {useState, useEffect} from 'react';
-import Front from "../images/Front.png";
-import Back from "../images/Back.png";
+import Mountain from "../images/mountain.jpg"
 import Beach from "../images/beach.jpg";
 import Flower from "../images/flower.jpg";
+import "./Slideshow.css" 
 
-const images = [Front, Back, Beach, Flower];
+
+const images = [Beach, Flower, Mountain];
 const delay = 5500;
 function Slideshow() {
 
   const [index, setIndex] = useState(0)
-  
+  const timeoutRef = React.useRef(null)
+
+  function resetTimeout() {
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current)
+    }
+  }
+
+
   useEffect(() => {
-    setTimeout(
+    timeoutRef.current = setTimeout(
       () =>
         setIndex((prevIndex) =>
           prevIndex === images.length - 1 ? 0 : prevIndex + 1
@@ -20,7 +29,9 @@ function Slideshow() {
       delay
     );
     
-    return () => {};
+    return () => {
+      resetTimeout()
+    };
   }, [index]);
 
     return (
@@ -37,8 +48,9 @@ function Slideshow() {
           ))}
        </div>
         <div className="slideshowDots text-center">
-          {images.map((_,index) => (
-            <div key={index} className="slideshowDot bg-gray-500 inline-block h-5 w-5 rounded-xl cursor-pointer m-1"></div>
+          {images.map((_,idx) => (
+            <div key={idx} onClick={() => { setIndex(idx)}} className={`slideshowDot ${index === idx ? "active" : ""} bg-gray-500 inline-block h-5 w-5 rounded-xl cursor-pointer m-1`}></div>
+          
           ))}
         </div>
         </div>
